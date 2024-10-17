@@ -40,8 +40,23 @@ document.addEventListener('DOMContentLoaded', function() {
         validateName();
         validateEmail();
         validatePassword();
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
         if (nameInput.value.trim() === '' || !emailInput.value.match(emailPattern) || passwordInput.value.length < 8) {
             event.preventDefault();
+        } else {
+            event.preventDefault();
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Thank you for submitting the form!';
+            successMessage.style.color = 'green';
+            successMessage.style.textAlign = 'center';
+            successMessage.style.marginTop = '20px';
+            successMessage.style.fontWeight = 'bold';
+            form.appendChild(successMessage);
+
+            nameInput.value = '';
+            emailInput.value = '';
+            passwordInput.value = '';
         }
     });
 });
